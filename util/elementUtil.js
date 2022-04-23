@@ -17,6 +17,11 @@ class ElementUtil {
         return element.getText()
     }
 
+    doGetTextAll(element) {
+        element.waitForDisplayed()
+        return element.getText()
+    }
+
     doIsDisplayed(element) {
         element.waitForDisplayed()
         return element.isDisplayed()
