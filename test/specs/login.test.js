@@ -1,28 +1,28 @@
-const { assert } = require('chai')
-const loginPage = require('../pages/login.page')
-const constants = require('../constants')
-const configData = require('../config')
+//const { assert } = require('chai')
+const loginPage = require('../../pages/login.page')
+const constants = require('../../constants')
+const configData = require('../../config')
 
-describe('login page feature test', function () {
+describe('login page feature test', () => {
 
-    it('verify login page title', function () {
-        browser.url('/')
+    it('verify login page title', async () => {
+        await browser.url("http://automationpractice.com/index.php")
         browser.maximizeWindow()
-        const title = loginPage.getPageTitle()
+        const title = await loginPage.getPageTitle() //from here check
         console.log('login page title is: ', title)
         assert.equal(constants.LOGIN_PAGE_TITLE, title, 'title is not found')
     })
-    it('verify Sign in link', function () {
+    it('verify Sign in link', async () => {
         assert.equal(true, loginPage.isSignInLinkExist(), 'sign in link is not present')
     })
-    it('Verify Account got created', function () {
+    it('Verify Account got created', async () => {
         //Click SignIn on the landing page and Create Account by entering email address
         loginPage.doCreateAccount(configData.emailID, configData.firstName, configData.lastName, configData.pwd, configData.address, configData.city, configData.zip)
     })
-    it('verify correct name and surname is displayed', function () {
+    it('verify correct name and surname is displayed', async () => {
         assert.equal(true, loginPage.isNameDisplayed(), 'name not displayed')
     })
-    it('verify able to add product and product details showing  correctly', function () {
+    it('verify able to add product and product details showing  correctly', async () => {
         loginPage.doLogin(configData.username, configData.password)
         loginPage.addProduct()
         assert.equal(true, loginPage.isTshirtNameDisplayed(), 't-shirt name not available')
