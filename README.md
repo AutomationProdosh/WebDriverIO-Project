@@ -3,7 +3,9 @@
 Configuring Commands:
 --------------------
 npm init
+
 npm i @wdio/cli
+
 npx wdio config
 
 
