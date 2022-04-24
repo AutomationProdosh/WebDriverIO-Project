@@ -1,31 +1,35 @@
 //const { assert } = require('chai')
-const loginPage = require('../../pages/login.page')
+const loginPage = require('../pageobjects/login.page')
 const constants = require('../../constants')
 const configData = require('../../config')
+const assert = require("assert")
 
 describe('login page feature test', () => {
 
     it('verify login page title', async () => {
         await browser.url("http://automationpractice.com/index.php")
         browser.maximizeWindow()
-        const title = await loginPage.getPageTitle() //from here check
+        const title = await loginPage.getPageTitle() 
         console.log('login page title is: ', title)
-        assert.equal(constants.LOGIN_PAGE_TITLE, title, 'title is not found')
+        await expect(browser).toHaveTitle(constants.LOGIN_PAGE_TITLE)
     })
     it('verify Sign in link', async () => {
-        assert.equal(true, loginPage.isSignInLinkExist(), 'sign in link is not present')
+        await expect(loginPage.isSignInLinkExist()).toBeDisplayed()
     })
-    it('Verify Account got created', async () => {
+    xit('Verify Account got created', async () => {
         //Click SignIn on the landing page and Create Account by entering email address
         loginPage.doCreateAccount(configData.emailID, configData.firstName, configData.lastName, configData.pwd, configData.address, configData.city, configData.zip)
     })
-    it('verify correct name and surname is displayed', async () => {
-        assert.equal(true, loginPage.isNameDisplayed(), 'name not displayed')
+    xit('verify correct name and surname is displayed', async () => {
+        //assert.equal(true, loginPage.isNameDisplayed(), 'name not displayed')
+        await expect(loginPage.isNameDisplayed()).toBeDisplayed()
     })
-    it('verify able to add product and product details showing  correctly', async () => {
+    xit('verify able to add product and product details showing  correctly', async () => {
         loginPage.doLogin(configData.username, configData.password)
-        loginPage.addProduct()
-        assert.equal(true, loginPage.isTshirtNameDisplayed(), 't-shirt name not available')
+        await loginPage.addProduct()
+        //assert.equal(true, loginPage.isTshirtNameDisplayed(), 't-shirt name not available')
+        await expect(loginPage.isTshirtNameDisplayed()).toBeDisplayed()
+        
 
     })
 })

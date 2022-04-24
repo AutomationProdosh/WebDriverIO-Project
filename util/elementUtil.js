@@ -18,16 +18,16 @@ class ElementUtil {
     }
 
     doIsDisplayed(element) {
-        element.waitForDisplayed()
-        return element.isDisplayed()
+        element.waitForDisplayed() 
+        return element.isDisplayed() 
     }
 
     doGetPageTitle(pageTitle) {
         browser.waitUntil(function() {
-            return (browser.getTtile() === pageTitle)
+            return (browser.getTitle() === pageTitle)
         }, 1000, 'title is not displayed after the given time'
     )
-        return browser.getTtile()
+        return browser.getTitle()
     }
 }
 
