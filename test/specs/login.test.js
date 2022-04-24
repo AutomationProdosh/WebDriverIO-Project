@@ -13,7 +13,7 @@ describe('login page feature test', () => {
         console.log('login page title is: ', title)
         await expect(browser).toHaveTitle(constants.LOGIN_PAGE_TITLE)
     })
-    it('verify Sign in link', async () => {
+    xit('verify Sign in link', async () => {
         await expect(loginPage.isSignInLinkExist()).toBeDisplayed()
     })
     xit('Verify Account got created', async () => {
